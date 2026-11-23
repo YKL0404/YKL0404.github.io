@@ -68,11 +68,11 @@ Hooks perform enforcement, gating the action path with allow, block, or hand-off
 (1)Pre-defined Rule-based Hooks：预定义规则型 Hook,系统开发者提前规定好哪些操作绝对不能做，Agent 一旦触犯，就直接拦截。
 (2)Custom User-defined Hooks：用户自定义 Hook,系统使用者可以根据自己的业务需求，制定额外的安全规则。
 (3)Runtime-adaptive Hooks：运行时自适应 Hook,不再完全依赖提前写好的固定规则，而是根据 Agent 执行过程中实时表现出来的异常情况，动态决定是否进行安全干预。
-![hooks and middleware](assets\image\Overview of hooks and middlwware.png)
+![hooks and middleware](/assets/image/Overview%20of%20hooks%20and%20middlwware.png)
 ## Verification
 验证机制承担了这一互补角色，作为框架的评估引擎，判断被拦截的动作是否应继续执行、中间推理是否在正确轨道上，以及最终输出是否满足任务要求。
 本小节讨论的代表性验证与评估方法，按assessment target、verification level和verifier strategy进行组织。
-![verification](assets\image\Representative verification and evaluation methods for LLM agents.png)
+![verification](/assets/image/Representative%20verification%20and%20evaluation%20methods%20for%20LLM%20agents.png)
 ### Assessment Targets
 验证机制可根据其认证的属性进行分类：the factual correctness of outputs、he operational safety of actions、faithfulness to the user’s instructions，agreement across verifiers。
 (1) Correctness Verification. Correctness verification certifies the factual accuracy of agent outputs.
