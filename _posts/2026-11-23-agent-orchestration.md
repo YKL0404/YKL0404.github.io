@@ -62,8 +62,32 @@ Orchestration 的完整逻辑
    
    核心问题：Agent 如何可靠地交流？
 
-
-
+## Hooks and Middleware
+Hooks perform enforcement, gating the action path with allow, block, or hand-off decisions, whether through rule-based evaluation or model judgment.
+钩子执行强制约束，通过允许、阻止或移交决策对动作路径进行门控，无论是基于规则评估还是模型判断。
+(1)Pre-defined Rule-based Hooks：预定义规则型 Hook,系统开发者提前规定好哪些操作绝对不能做，Agent 一旦触犯，就直接拦截。
+(2)Custom User-defined Hooks：用户自定义 Hook,系统使用者可以根据自己的业务需求，制定额外的安全规则。
+(3)Runtime-adaptive Hooks：运行时自适应 Hook,不再完全依赖提前写好的固定规则，而是根据 Agent 执行过程中实时表现出来的异常情况，动态决定是否进行安全干预。
+![hooks and middleware](assets\image\Overview of hooks and middlwware.png)
+## Verification
+验证机制承担了这一互补角色，作为框架的评估引擎，判断被拦截的动作是否应继续执行、中间推理是否在正确轨道上，以及最终输出是否满足任务要求。
+本小节讨论的代表性验证与评估方法，按assessment target、verification level和verifier strategy进行组织。
+![verification](assets\image\Representative verification and evaluation methods for LLM agents.png)
+### Assessment Targets
+验证机制可根据其认证的属性进行分类：the factual correctness of outputs、he operational safety of actions、faithfulness to the user’s instructions，agreement across verifiers。
+(1) Correctness Verification. Correctness verification certifies the factual accuracy of agent outputs.
+(2) Safety Verification. Safety verification certifies that agent actions do not cause harm before they take effect.
+(3) Faithfulness Verification. Faithfulness verification certifies that an agent follows the given instructions and stays on task, rather than drifting toward a superficially plausible but misaligned objective.
+(4) Multi-agent Cross-verification. Multi-agent cross-verification employs several models for mutual critique.
+### Verification Levels
+验证机制还可以根据其在代理执行生命周期中介入的阶段来进行表征。
+(1) Step-level Verification. Step-level verification evaluates intermediate reasoning quality at each step, complementing hooks that enforce binary allow-or-block decisions via deterministic rules.
+(2) End-of-run Verification. End-of-run verification evaluates agent outputs after task completion.
+### Verifier Strategies
+与时间粒度正交，验证器质量可通过免训练架构设计和基于学习的方法得到提升，我们将其归为三类。
+(1) Automated labels and implicit rewards.
+(2) Tree search with verifier guidance.A family of methods couples Monte Carlo tree search with LLM self-evaluation for structured exploration.
+(3) Compute-optimal Verification Scaling.
 
 
 
